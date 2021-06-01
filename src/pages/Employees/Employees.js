@@ -77,7 +77,12 @@ export default function Employees() {
         setRecordForEdit(item)
         setOpenPopup(true)
     }
-
+    const deleteItem = item =>{
+        let employees = employeeService.getAllEmployees();
+        let recordIndex = employees.filter(x => x.id != item.id);
+        setRecords(recordIndex)
+        employeeService.deleteEmployee(item)
+    }
     return (
         <>
             <PageHeader
@@ -123,7 +128,9 @@ export default function Employees() {
                                             <EditOutlinedIcon fontSize="small" />
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
-                                            color="secondary">
+                                            color="secondary"
+                                            onClick={() => { deleteItem(item) }}
+                                            >
                                             <CloseIcon fontSize="small" />
                                         </Controls.ActionButton>
                                     </TableCell>

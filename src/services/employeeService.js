@@ -43,3 +43,9 @@ export function getAllEmployees() {
         department: departments[x.departmentId - 1].title
     }))
 }
+
+export function deleteEmployee(data) {
+    let employees = getAllEmployees();
+    let recordIndex = employees.filter(x => x.id != data.id);
+    localStorage.setItem(KEYS.employees, JSON.stringify(recordIndex));
+}
